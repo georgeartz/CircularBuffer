@@ -13,9 +13,9 @@
 //
 //  Public interfaces:
 //  1. class CircularBuffer(bufSize)
-//  1. addBlockToBuf(byte *block, size_t blockSize, BufInfo &bufInfo)
-//  2. deleteBlockToBuf(byte *block, BufInfo &bufInfo)
-//  3. printBuf()
+//  2. addBlockToBuf(byte *block, size_t blockSize, BufInfo &bufInfo)
+//  3. deleteBlockToBuf(byte *block, BufInfo &bufInfo)
+//  4. printBuf()
 //
 //  Deletes of blocks are handled lazily to minimize movement
 //  of data in the circular buffer. Deleted blocks are compacted out
