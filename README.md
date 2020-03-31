@@ -1,7 +1,7 @@
 # CircularBuffer
 CircularBuffer 
 
-Implement circular buffer with support for add and delete of variable sized blocks. Buffer statistics are returned on add and delete requests. Originally intended to write in C but used C++ to use std::map instead of C re-black tree.
+Implement circular buffer with support for add and delete of variable sized blocks. Buffer statistics are returned on add and delete requests. Originally intended to write in C but used C++ to use std::map instead of C red-black tree.
 
 Interfaces:
 1. class CircularBuffer(bufSize)
