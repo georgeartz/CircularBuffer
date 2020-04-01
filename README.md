@@ -6,7 +6,7 @@ Implement circular buffer with support for add and delete of variable sized bloc
 Interfaces:
 1. class CircularBuffer(bufSize)
 2. addBlockToBuf(byte *block, size_t blockSize, BufInfo &bufInfo)
-3. deleteBlockToBuf(byte *block, BufInfo &bufInfo)
+3. deleteBlockFromBuf(byte *block, BufInfo &bufInfo)
 4. printBuf()
 
 Block delete requests are handled lazily to minimize movement of data in the circular buffer. Deleted blocks are compacted out of the buffer when 1) space is needed for an add block request and 2) printBuf operation
