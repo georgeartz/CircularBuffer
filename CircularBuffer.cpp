@@ -98,6 +98,15 @@ private:
         bi->bufBytesUsed = (bufSize - bufBytesFree) - bufBytesDeletePending;
     }
     
+    void appendBlockToList(BufBlock *bufBlock)
+    {
+        bufBlock->next = 0;
+        bufBlock->prev = bufBlockTail;
+        if (bufBlockTail) bufBlockTail->next = bufBlock;
+        if (bufBlockHead == 0) bufBlockHead = bufBlock;
+        bufBlockTail = bufBlock;
+    }
+    
     void removeBlockFromList(BufBlock *bufBlock)
     {
         if (bufBlock == bufBlockHead)
@@ -230,7 +239,7 @@ private:
             removeBlockFromList(bufBlock);
             deleteBlockFromMap(bufBlock->blockMapKey);
             bufBlockPrev = bufBlock->prev;
-            free(bufBlock);
+            delete(bufBlock);
             bufBlock = bufBlockPrev;
         }
         
@@ -322,15 +331,11 @@ public:
         if (rc == RC_SUCCESS)
         {
             BufBlock *bufBlock = new(BufBlock);
-            bufBlock->next = 0;
-            bufBlock->prev = bufBlockTail;
-            if (bufBlockTail) bufBlockTail->next = bufBlock;
             bufBlock->blockInBuf = blockAddrInBuf;
             bufBlock->blockSize = blockSize;
             bufBlock->blockMapKey = block;
             bufBlock->blockDeletePending = false;
-            if (bufBlockHead == 0) bufBlockHead = bufBlock;
-            bufBlockTail = bufBlock;
+            appendBlockToList(bufBlock);
             rc = addBlockToMap(block, bufBlock);
         }
             
