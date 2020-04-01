@@ -362,6 +362,7 @@ public:
     
     void printBuf()
     {
+        // TBD: acquire lock  BUGBUG
         compactBuf();       // compact delete pending blocks
         uint_t bytesToPrint = bufSize - bufBytesFree;    // bytes used in buf
         int precision;
@@ -378,6 +379,7 @@ public:
         printf("%.*s", precision, bufStart);
         precision = ((int) bytesToPrint) - precision;
         printf("%.*s", precision, buf);
+        // TBD: free lock
     }
 
 private:
@@ -470,3 +472,18 @@ TEST(CircularBuffer, DeleteBlock)
     printf("Expecting msg3, msg5:\n");
     buf.printBuf();
 }
+
+#if 0   // main() if needed 
+int InitGoogleTest(int argc, char* argv[])
+{
+    testing::InitGoogleTest(&argc, argv);
+    return RUN_ALL_TESTS();
+}
+
+int main(int argc, char* argv[])
+{
+    int gtestres = InitGoogleTest(argc, argv);
+    printf("Google Test result: %d\n", gtestres);
+    return 0;
+}
+#endif
