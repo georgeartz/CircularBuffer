@@ -1,7 +1,7 @@
 # CircularBuffer
 CircularBuffer 
 
-CircularBuffer is a command line utility which implements a circular buffer with support for add and delete of variable sized blocks. Buffer statistics are returned on add and delete requests. Originaly intended to write in C but switched to C++ to use std::map instead of C red-black tree.
+This project is a command line utility which implements a circular buffer with support for add and delete of variable sized blocks. Buffer statistics are returned on add and delete requests. Originaly intended to write in C but switched to C++ to use std::map instead of C red-black tree.
 
 Interfaces:
 1. class CircularBuffer(bufSize)
